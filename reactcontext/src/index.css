@@ -1,0 +1,146 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: all 0.5s;
+}
+input,
+textarea,
+button,
+select {
+  box-shadow: none !important;
+}
+input::placeholder,
+textarea::placeholder,
+button::placeholder,
+select::placeholder {
+  font-size: 80%;
+}
+body {
+  font-family: Poppins !important;
+}
+.header-page {
+  text-transform: capitalize;
+}
+
+.auth {
+  position: absolute !important;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.auth.login {
+  width: 35%;
+}
+.auth.sign {
+  width: 40%;
+}
+
+label {
+  margin-bottom: 8px;
+}
+
+.card-dashboard {
+  min-height: 130px;
+}
+.card-dashboard:hover {
+  transform: translateY(-3px);
+}
+.card-dashboard span {
+  margin-top: -38%;
+  width: 100px;
+  text-align: center;
+  height: 70px;
+  margin-bottom: 1.7rem;
+}
+.card-dashboard .card-title {
+  font-size: 20px;
+  margin: 0;
+}
+.btn-action {
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+}
+.card-icon span {
+  font-size: 50px;
+}
+
+.card {
+  box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.07) !important;
+}
+
+td {
+  vertical-align: middle;
+  padding-block: 20px !important;
+}
+td > * {
+  margin: 0;
+}
+th {
+  background-color: #f8f9fd !important;
+  color: rgb(87, 87, 87);
+  padding: 1rem !important;
+}
+th:nth-child(1),
+td:nth-child(1) {
+  width: 40px;
+  text-align: center;
+}
+.td-main {
+  font-weight: 600;
+  text-transform: capitalize;
+  color: rgb(51, 51, 51) !important;
+}
+
+ul {
+  list-style: none;
+}
+
+.img-hero {
+  max-width: 100%;
+  max-height: 100vh;
+  object-fit: cover;
+}
+
+.navbar {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+.collection ul li:nth-child(1) {
+  width: 23px;
+}
+.collection-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+}
+
+.detail-img {
+  width: 100%;
+}
+
+.collection-item:hover {
+  background-color: rgba(236, 236, 236, 0.5);
+}
+.collection-category img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+.collection-category .card {
+  height: 300px;
+  transition: all 0.5s;
+}
+.collection-category .card:hover {
+  transform: translateY(-10px);
+  transition: 0;
+}
+.overflow-hide::-webkit-scrollbar {
+  width: 0;
+}
+.overflow-hide {
+  scroll-snap-type: x mandatory;
+}
+.overflow-hide > * {
+  scroll-snap-align: center;
+}
