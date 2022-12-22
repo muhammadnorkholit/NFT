@@ -10,7 +10,8 @@ export default function Member() {
   useEffect(() => {
     fetch(env + "/member")
       .then((json) => json.json())
-      .then((res) => setData(res[0].data));
+      .then((res) => {
+        setData(res[0])});
     setTimeout(() => {
       setMessage(undefined);
     }, 3000);
@@ -23,7 +24,7 @@ export default function Member() {
     fetch(env + `/member${value ? "?filter=" + value : ""}`)
       .then((json) => json.json())
       .then((res) => {
-        setData(res[0].data);
+        setData(res[0]);
       });
   }
   function filter(e) {
@@ -31,14 +32,13 @@ export default function Member() {
     fetch(env + `/member?q=` + value + (_filter ? `&filter=${_filter}` : ""))
       .then((json) => json.json())
       .then((res) => {
-        setData(res[0].data);
+        console.log(res);
+        setData(res[0]);
       });
   }
 
   function updateStatus(data, status) {
-    let confirs = confirm(
-      `Apakah anda yakin mengubah status ${data.username}  ?`
-    );
+    let confirs = window.confirm( `Apakah anda yakin mengubah status ${data.username}  ?`);
     if (confirs) {
       fetch(env + "/member/" + data.id, {
         method: "PUT",
@@ -50,11 +50,11 @@ export default function Member() {
       })
         .then((json) => json.json())
         .then((res) => {
-          console.log(res);
           setMessage(res.pesan);
         });
     }
   }
+ 
   return (
     <div>
       <h2 className="header-page fw-bold">Member</h2>
@@ -88,6 +88,7 @@ export default function Member() {
               <tr>
                 <th>No</th>
                 <th>Username</th>
+                <th>password</th>
                 <th>Email</th>
                 <th>Created At</th>
                 <th>Status</th>
@@ -95,12 +96,15 @@ export default function Member() {
               </tr>
             </thead>
             <tbody>
-              {data?.data?.map((data, i) => {
+              {data?.map((data, i) => {
                 return (
                   <tr key={i} className="">
                     <td>{(i += 1)}</td>
                     <td>
                       <h6 className="td-main">{data.username}</h6>
+                    </td>
+                    <td>
+                      <p>{data.password}</p>
                     </td>
                     <td>
                       <p>{data.email}</p>
@@ -156,9 +160,9 @@ export default function Member() {
                   </tr>
                 );
               })}
-              {data?.data?.length === 0 && (
+              {data?.length === 0 && (
                 <tr>
-                  <td colSpan={5}>Tidak Ada Data</td>
+                  <td colSpan={7}>Tidak Ada Data</td>
                 </tr>
               )}
             </tbody>

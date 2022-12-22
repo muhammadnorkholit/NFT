@@ -1,6 +1,17 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { ContextUse } from "../../contexts/AuthContext";
+import { Link, useNavigate } from "react-router-dom";
 export default function Sidebar() {
+  const navi = useNavigate();
+  const {isLogin} = ContextUse()
+  
+ function logout() {
+  if (window.confirm("Anda akan logout?")) {
+    
+    localStorage.clear();
+    window.location.href = '/login';
+  }
+}
   return (
     <div className="bg-dark h-100 rounded-2 p-3">
       <div className="header mb-4">
@@ -27,6 +38,11 @@ export default function Sidebar() {
           <Link to="/admin/collection" className="nav-link py-3  text-white ">
             <span className="ti-view-grid"></span> Collection
           </Link>
+        </li>
+        <li className="nav-item">
+          <span onClick={logout} className="nav-link py-3  text-white ">
+            <span className="ti-close"></span> Logout
+          </span>
         </li>
       </ul>
     </div>

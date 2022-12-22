@@ -8,13 +8,18 @@ export default function Login() {
   const [error, setError] = useState(undefined);
   const [message, setMessage] = useState(undefined);
   const [field, setField] = useState(undefined);
-  const {isLogin} = ContextUse()
 
+  const { setUser ,isLogin,user} = ContextUse();
   if (isLogin) {
-    return <Navigate to={"/admin"} />;
+    if (user.role == "admin") {
+      return <Navigate to={"/admin"} />;
+    }else{
+      if (user.role == "member") {
+        return <Navigate to={"/"} />;
+      }
+    }
   }
 
-  const { setUser } = ContextUse();
   function onField(e) {
     const { name, value } = e.target;
     setField({ ...field, [name]: value });
@@ -32,11 +37,11 @@ export default function Login() {
     })
       .then((json) => json.json())
       .then((res) => {
-        if (res?.status === 200) {
-          setUser(res.user);
+        if (res?.status == 200) {
+          setUser(res.user)
           setError(undefined);
           if (res.user.role == "admin")
-            navi("/admin", { state: { isLogin: true } });
+            navi("/admin");
           if (res.user.role == "member") navi("/");
         }
         if (res?.status === 401) {
@@ -87,12 +92,20 @@ export default function Login() {
           <button type="submit" className="btn btn-primary w-100 rounded-pill">
             Login
           </button>
-          <small className="text-center d-block pt-3  ">
+        <div className="d-flex justify-content-between">
+        <small className="text-center  pt-3  ">
+          
+            <Link to={"/forget"} className="link-primary text-decoration-none">
+            Forget Password
+            </Link>
+          </small>
+          <small className="text-center  pt-3  ">
             Don't have account,{" "}
             <Link to={"/sign"} className="link-primary text-decoration-none">
               sign up
             </Link>
           </small>
+        </div>
         </form>
       </div>
     </div>

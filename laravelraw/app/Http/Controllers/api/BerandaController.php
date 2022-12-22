@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use DB;
+use Hash;
 class BerandaController extends Controller
 {
     public function index()
@@ -21,8 +22,6 @@ class BerandaController extends Controller
         ->groupBy('assets.id')
         ->orderByRaw('count(transaction.id) DESC')
         ->get();
-        
-    
 
         $arrayCollectCategory = [];
 
@@ -35,6 +34,7 @@ class BerandaController extends Controller
                 "description"=>$cat->description,
                 "imageUrl   "=>$cat->imageUrl,
                 "items"=>DB::table('assets')
+                ->select("assets.*")
                 ->join('users','assets.id_seller','users.id')
                 ->where('id_category',$cat->id)
                 ->where('assets.status','active')
@@ -61,11 +61,8 @@ class BerandaController extends Controller
             "price"=>  $detail->price,
             "created_at"=>  $detail->created_at,
             "imageUrl"=> $detail->imageUrl,
-<<<<<<< HEAD
             "status"=> "active",
-=======
             "status"=> $detail->status,
->>>>>>> fafe15610d4d397179c981c99869ab3f619c4b31
         "categories"=> $category = DB::table('categories')->where('id',$detail->id_category)->first()
         ];
 

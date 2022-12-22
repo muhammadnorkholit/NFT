@@ -17,6 +17,9 @@ button::placeholder,
 select::placeholder {
   font-size: 80%;
 }
+a{
+  text-decoration: none;
+}
 body {
   font-family: Poppins !important;
   overflow-x: hidden !important;
@@ -119,6 +122,8 @@ ul {
 
 .detail-img {
   width: 100%;
+  max-height: 50vh;
+  object-fit: contain;
 }
 
 .collection-item:hover {

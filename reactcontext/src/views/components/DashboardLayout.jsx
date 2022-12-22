@@ -4,9 +4,14 @@ import { ContextUse } from "../../contexts/AuthContext";
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
 export default function DashboardLayout() {
-  const { isLogin } = ContextUse();
+  const { isLogin ,user} = ContextUse();
   if (!isLogin) {
     return <Navigate to={"/login"} />;
+  }else{
+    if (user.role == "member") {
+    return <Navigate to={"/"} />;
+      
+    }
   }
 
   return (

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import NavbarDepan from "./components/NavbarDepan";
 import { useParams } from "react-router-dom";
 import { env } from "./../env";
 export default function Detail() {
@@ -16,18 +15,14 @@ export default function Detail() {
 
   return (
     <div>
-      <NavbarDepan />
       <div className="container">
         <div className="row g-5 justify-content-between py-5">
           <div className="col-md-6">
-<<<<<<< HEAD
             <img
               src={data?.imageUrl}
               className="detail-img"
               alt=""
             />
-=======
-            <img src={data?.imageUrl} alt="" className="img-fluid" />
             <div className="card d-sm-block d-none mt-4">
               <div className="card-body p-3">
                 <p>
@@ -44,7 +39,6 @@ export default function Detail() {
                 </p>
               </div>
             </div>
->>>>>>> fafe15610d4d397179c981c99869ab3f619c4b31
           </div>
           <div className="col-md-6">
             <article className="card ">

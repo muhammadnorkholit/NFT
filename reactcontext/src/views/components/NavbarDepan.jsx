@@ -9,6 +9,13 @@ export default function NavbarDepan() {
     e.preventDefault();
     navi("/search", { state: { params: search } });
   }
+  function logout() {
+    if (window.confirm("Anda akan logout?")) {
+      
+      localStorage.clear();
+      window.location.href = '/';
+    }
+  }
   return (
     <nav className="navbar  navbar-expand-lg  navbar-light shadow-sm   bg-white py-3">
       <div className="container">
@@ -79,8 +86,9 @@ export default function NavbarDepan() {
               placeholder="Search items or category  "
             />
           </form>
-          <div className="ms-md-3">
+          <div className="ms-md-3 d-flex align-items-center gap-3">
             {user ? (
+            <>
               <Link
                 className="nav-link active profile"
                 aria-current="page"
@@ -88,6 +96,9 @@ export default function NavbarDepan() {
               >
                 <img src={user.imageUrl} className=" rounded-circle " alt="" />
               </Link>
+              <button onClick={logout} className="btn btn-primary ">
+              Logout
+            </button></>
             ) : (
               <Link to={"/login"} className="btn btn-primary ">
                 Login

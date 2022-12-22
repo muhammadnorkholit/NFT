@@ -17,8 +17,7 @@ const ContextComponent = ({ children }) => {
     }
   }
   function setUser(user) {
-    
-    setUser(user)
+    _setUser(user)
     localStorage.setItem(
       "USER_DATA",
       JSON.stringify({ ...user, exp: date.getTime() + 24 * 60 * 60 * 1000 })
@@ -26,7 +25,10 @@ const ContextComponent = ({ children }) => {
     isLogin = true   
     
   }
-  
+  // function setLogout() {
+  //   localStorage.removeItem("USER_DATA");
+  //   logout = true
+  // }
   return (
     <Context.Provider value={{ user, setUser, isLogin }}>
       {children}

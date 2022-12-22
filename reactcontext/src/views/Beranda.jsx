@@ -116,8 +116,8 @@ export default function Beranda() {
         </div>
         <section>
           <div className="container">
-            {data?.categoryCollect?.map((cat) => (
-              <div className="row  flex-column collection-category align-items-start">
+            {data?.categoryCollect?.map((cat,i) => (
+              <div key={i} className="row  flex-column collection-category align-items-start">
                 <h3 className="text-dark fw-semibold text-capitalize ">
                   {cat.title}
                   <hr
@@ -129,9 +129,11 @@ export default function Beranda() {
                   />
                 </h3>
                 <div className="row overflow-hide  flex-nowrap py-lg-4 py-2 overflow-auto">
-                  {cat.items.map((item) => (
-                    <div className="col-lg-3 col-md-4 col-sm-6 col-11">
+                  {cat.items.map((item,i) => (
+                    <div key={i} className="col-lg-3 col-md-4 col-sm-6 col-11">
+                       <Link to={"/detail/" + item.id}>
                       <div className="card border-0 overflow-hidden">
+                        {console.log(cat.items)}
                         <img
                           src={env1 + "/image/" + item.imageUrl}
                           className="collection-category-img"
@@ -145,11 +147,12 @@ export default function Beranda() {
                           <h5 className="text-dark fs-5">{item.title}</h5>
                           <span className="text-dark">20 ETH</span>
                           <div className="d-flex  justify-content-between">
-                            <small>Created by</small>
-                            <small>{item.username}</small>
+                            <small className="text-dark">Created by</small>
+                            <small className="text-dark">{item.username}</small>
                           </div>
                         </div>
                       </div>
+                      </Link>
                     </div>
                   ))}
                 </div>

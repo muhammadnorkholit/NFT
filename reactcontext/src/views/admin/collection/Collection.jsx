@@ -63,7 +63,7 @@ export default function Collection() {
   }
 
   function updateStatus(data, status) {
-    let confirs = confirm(`Apakah anda yakin mengubah status ${data.title}  ?`);
+    let confirs = window.confirm(`Apakah anda yakin mengubah status ${data.title}  ?`);
     if (confirs) {
       fetch(env + "/collection/" + data.id, {
         method: "PUT",

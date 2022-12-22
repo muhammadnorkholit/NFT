@@ -37,4 +37,5 @@ Route::resource('/member', MemberController::class);
 Route::get('/beranda',[ BerandaController::class,'index']);
 Route::get('/beranda/{id}',[ BerandaController::class,'detail']);
 Route::get('/search',[ BerandaController::class,'search']);
+Route::post('/forget',[ AuthController::class,'forgetPassword']);
 // Route::resource('/member', MemberController::class);

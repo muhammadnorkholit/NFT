@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { env, env1 } from "../env";
 import NavbarDepan from "./components/NavbarDepan";
 
@@ -26,7 +26,8 @@ export default function SearchPage() {
       <div className="row overflow-hide collection-category  flex-nowrap py-lg-4 py-2 overflow-auto">
         {data?.map((item) => (
           <div className="col-lg-3 col-md-4 col-sm-6 col-11">
-            <div className="card border-0 overflow-hidden">
+      <Link to={`/detail/`+item.id}>
+      <div className="card border-0 overflow-hidden">
               <img
                 src={env1 + "/image/" + item.imageUrl}
                 className="collection-category-img"
@@ -40,11 +41,11 @@ export default function SearchPage() {
                 <h5 className="text-dark fs-5">{item.title}</h5>
                 <span className="text-dark">20 ETH</span>
                 <div className="d-flex  justify-content-between">
-                  <small>Created by</small>
-                  <small>{item.username}</small>
+                  <small className="text-dark">Created by</small>
+                  <small className="text-dark">{item.username}</small>
                 </div>
               </div>
-            </div>
+            </div></Link>
           </div>
         ))}
       </div>

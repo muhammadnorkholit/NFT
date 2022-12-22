@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import DashboardLayout from "./views/components/DashboardLayout";
 import Dashboard from "./views/admin/Dashboard";
 import "./assets/bootstrap/css/bootstrap.css";
-import "./assets/bootstrap/js/bootstrap.js";
+// import "./assets/bootstrap/js/bootstrap.js";
 import "./index.css";
 import Login from "./views/Login";
 import SignUp from "./views/SignUp";
@@ -19,6 +19,7 @@ import Detail from "./views/Detail";
 import SearchPage from "./views/searchPage";
 import NotFound from "./views/NotFound";
 import Profil from "./views/Profil";
+import ForgetPassword from "./views/ForgetPassword";
 export const Routes = createBrowserRouter([
   {
     path: "/",
@@ -35,6 +36,10 @@ export const Routes = createBrowserRouter([
       {
         path: "/search",
         element: <SearchPage />,
+      },
+      {
+        path: "/forget",
+        element: <ForgetPassword />,
       },
       {
         path: "/login",

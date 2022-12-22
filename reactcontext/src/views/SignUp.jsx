@@ -13,7 +13,7 @@ export default function SignUp() {
     const { name, value } = e.target;
     setField({ ...field, [name]: value });
   }
-
+  // navi("/admin")
   function onSubmit(e) {
     e.preventDefault();
     fetch("http://127.0.0.1:8000/api/signup", {

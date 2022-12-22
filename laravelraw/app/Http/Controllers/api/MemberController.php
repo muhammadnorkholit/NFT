@@ -27,9 +27,34 @@ class MemberController extends Controller
         }
 
        $data =  $data->paginate(10);
+       $dataArray = [];
+
+       foreach ($data as  $value) {
+       try {
+        $dataArray[] = [
+            "id"=>$value->id,
+            "username"=>$value->username,
+            "email"=>$value->email,
+            "status"=>$value->status,
+            "created_at"=>$value->created_at,
+            "password"=>(decrypt($value->password) ),
+        ];
+
+       } catch (\Throwable $th) {
+        $dataArray[] = [
+            "id"=>$value->id,
+            "username"=>$value->username,
+            "email"=>$value->email,
+            "status"=>$value->status,
+            "created_at"=>$value->created_at,
+            "password"=>"Custom",
+        ];
+        // dd($value);
+       }
+       }
     
 
-        return response()->json(['status'=>200,compact('data')]);
+        return response()->json(['status'=>200,$dataArray]);
     }
 
     /**
