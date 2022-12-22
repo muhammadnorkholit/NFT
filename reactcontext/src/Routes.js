@@ -1,8 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
 import DashboardLayout from "./views/components/DashboardLayout";
 import Dashboard from "./views/admin/Dashboard";
-import "./../assets/bootstrap/css/bootstrap.css";
-import "./../assets/bootstrap/js/bootstrap.js";
+import "./assets/bootstrap/css/bootstrap.css";
+import "./assets/bootstrap/js/bootstrap.js";
 import "./index.css";
 import Login from "./views/Login";
 import SignUp from "./views/SignUp";
@@ -10,12 +10,15 @@ import Beranda from "./views/Beranda";
 import Category from "./views/admin/category/Category";
 import CreateCategory from "./views/admin/category/CreateCategory";
 import Member from "./views/admin/member/Member";
-import "./../assets/icon/demo-files/demo.css";
-import "./../assets/icon/themify-icons.css";
-import "./../assets/icon/ie7/ie7.css";
+import "./assets/icon/demo-files/demo.css";
+import "./assets/icon/themify-icons.css";
+import "./assets/icon/ie7/ie7.css";
 import Collection from "./views/admin/collection/Collection";
 import GuestLayout from "./views/components/GuestLayout";
 import Detail from "./views/Detail";
+import SearchPage from "./views/searchPage";
+import NotFound from "./views/NotFound";
+import Profil from "./views/Profil";
 export const Routes = createBrowserRouter([
   {
     path: "/",
@@ -30,6 +33,10 @@ export const Routes = createBrowserRouter([
         element: <Detail />,
       },
       {
+        path: "/search",
+        element: <SearchPage />,
+      },
+      {
         path: "/login",
         element: <Login />,
       },
@@ -38,7 +45,15 @@ export const Routes = createBrowserRouter([
         path: "/sign",
         element: <SignUp />,
       },
+      {
+        path: "/:username",
+        element: <Profil />,
+      },
     ],
+  },
+  {
+    path: "*",
+    element: <NotFound />,
   },
   {
     path: "/admin",

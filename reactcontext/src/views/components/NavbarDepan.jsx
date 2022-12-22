@@ -1,8 +1,16 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { ContextUse } from "../../contexts/AuthContext";
 export default function NavbarDepan() {
+  const navi = useNavigate();
+  const [search, setSearch] = useState("");
+  const { user } = ContextUse();
+  function doSearch(e) {
+    e.preventDefault();
+    navi("/search", { state: { params: search } });
+  }
   return (
-    <nav className="navbar  navbar-expand-lg  navbar-light   bg-light py-3">
+    <nav className="navbar  navbar-expand-lg  navbar-light shadow-sm   bg-white py-3">
       <div className="container">
         <Link className="navbar-brand fw-bold" to="/">
           OCENAPRIDE
@@ -21,25 +29,21 @@ export default function NavbarDepan() {
         <div className="collapse navbar-collapse" id="navbar">
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="#">
+              <Link className="nav-link active" aria-current="page" to="/">
                 Home
-              </a>
+              </Link>
             </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">
-                Link
-              </a>
-            </li>
+
             <li className="nav-item dropdown">
               <a
-                className="nav-link dropdown-toggle"
+                className="nav-link active dropdown-toggle"
                 href="#"
                 id="navbarDropdown"
                 role="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                Dropdown
+                Categories
               </a>
               <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li>
@@ -62,10 +66,34 @@ export default function NavbarDepan() {
                 </li>
               </ul>
             </li>
-            <li className="nav-item">
-              <a className="nav-link disabled">Disabled</a>
-            </li>
+            <li className="nav-item"></li>
           </ul>
+          <form onSubmit={doSearch} className="ms-auto">
+            <input
+              onChange={(e) => setSearch(e.target.value)}
+              type="text"
+              name="search"
+              id=""
+              style={{ width: "20rem" }}
+              className="form-control px-4   rounded-pill"
+              placeholder="Search items or category  "
+            />
+          </form>
+          <div className="ms-md-3">
+            {user ? (
+              <Link
+                className="nav-link active profile"
+                aria-current="page"
+                to=""
+              >
+                <img src={user.imageUrl} className=" rounded-circle " alt="" />
+              </Link>
+            ) : (
+              <Link to={"/login"} className="btn btn-primary ">
+                Login
+              </Link>
+            )}
+          </div>
         </div>
       </div>
     </nav>

@@ -11,7 +11,10 @@ export default function Member() {
     fetch(env + "/member")
       .then((json) => json.json())
       .then((res) => setData(res[0].data));
-  }, []);
+    setTimeout(() => {
+      setMessage(undefined);
+    }, 3000);
+  }, [message]);
 
   function handleFilter(e) {
     const { value } = e.target;
@@ -32,16 +35,32 @@ export default function Member() {
       });
   }
 
-  function updateStatus(e) {
-    const { value, name } = e.target;
-    let confirms = confirm("Apakah anda yakin mengubah status ?");
-    fetch(env + "/member/")
-      .then((json) => json.json())
-      .then((res) => setData(res[0].data));
+  function updateStatus(data, status) {
+    let confirs = confirm(
+      `Apakah anda yakin mengubah status ${data.username}  ?`
+    );
+    if (confirs) {
+      fetch(env + "/member/" + data.id, {
+        method: "PUT",
+        headers: {
+          Accept: "Application/json",
+          "Content-Type": "Application/json",
+        },
+        body: JSON.stringify({ status: status }),
+      })
+        .then((json) => json.json())
+        .then((res) => {
+          console.log(res);
+          setMessage(res.pesan);
+        });
+    }
   }
   return (
     <div>
       <h2 className="header-page fw-bold">Member</h2>
+      {message && (
+        <div className="alert alert-success text-center">{message}</div>
+      )}
       <div className="mt-4 d-flex justify-content-end  mb-3">
         <select
           onChange={handleFilter}
@@ -72,6 +91,7 @@ export default function Member() {
                 <th>Email</th>
                 <th>Created At</th>
                 <th>Status</th>
+                <th>Edit</th>
               </tr>
             </thead>
             <tbody>
@@ -96,6 +116,42 @@ export default function Member() {
                             : "ti-close bg-danger"
                         }`}
                       ></span>
+                    </td>
+                    <td>
+                      <div className="dropdown">
+                        <button
+                          className="btn btn-warning dropdown-toggle"
+                          type="button"
+                          data-bs-toggle="dropdown"
+                          aria-expanded="false"
+                        ></button>
+                        <ul className="dropdown-menu ">
+                          <li className="active dropdown-item p-3">
+                            <span className="ti-pencil-alt"></span> Edit Status
+                          </li>
+                          <li
+                            style={{ cursor: "Pointer" }}
+                            className="dropdown-item p-3"
+                            onClick={() => updateStatus(data, "active")}
+                          >
+                            <span>Active</span>
+                          </li>
+                          <li
+                            style={{ cursor: "Pointer" }}
+                            className="dropdown-item p-3"
+                            onClick={() => updateStatus(data, "noactive")}
+                          >
+                            <span>No Active</span>
+                          </li>
+                          <li
+                            style={{ cursor: "Pointer" }}
+                            className="dropdown-item p-3"
+                            onClick={() => updateStatus(data, "block")}
+                          >
+                            <span>Block</span>
+                          </li>
+                        </ul>
+                      </div>
                     </td>
                   </tr>
                 );

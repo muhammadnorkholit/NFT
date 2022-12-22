@@ -105,7 +105,7 @@ class MemberController extends Controller
       
 
         DB::table('users')->where('id',$id)->update([
-            'status '=>Request()->status ,
+            'status'=>Request()->status ,
         ]);
 
         return response()->json(['status'=>200,'pesan'=>'Berhasil Mengedit Kategori']);
