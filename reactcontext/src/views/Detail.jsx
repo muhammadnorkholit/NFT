@@ -20,14 +20,34 @@ export default function Detail() {
       <div className="container">
         <div className="row g-5 justify-content-between py-5">
           <div className="col-md-6">
+<<<<<<< HEAD
             <img
               src={data?.imageUrl}
               className="detail-img"
               alt=""
             />
+=======
+            <img src={data?.imageUrl} alt="" className="img-fluid" />
+            <div className="card d-sm-block d-none mt-4">
+              <div className="card-body p-3">
+                <p>
+                  {data?.description} Lorem ipsum dolor sit amet consectetur
+                  adipisicing elit. Quod excepturi, iure saepe possimus cumque
+                  nostrum nulla odit totam facilis? Natus dolorem, autem porro
+                  dignissimos, voluptatum praesentium expedita alias earum
+                  reiciendis aliquid ab esse harum. Esse, blanditiis error?
+                  Aliquam sit eos ad doloremque dolorem possimus illo est
+                  accusantium delectus eligendi laborum dolorum ipsam
+                  perferendis facere dicta illum sapiente odit quaerat,
+                  doloribus facilis quas libero deleniti! Nisi quibusdam
+                  architecto sequi aspernatur aperiam. Molestias laudantium
+                </p>
+              </div>
+            </div>
+>>>>>>> fafe15610d4d397179c981c99869ab3f619c4b31
           </div>
           <div className="col-md-6">
-            <div className="card ">
+            <article className="card ">
               <div className="card-body">
                 <div className="card-title">
                   <h5 className="fw-semibold fs-3 mb-4">{data?.title}</h5>
@@ -37,9 +57,34 @@ export default function Detail() {
                     <span className="ti-home"></span> {data?.categories?.title}
                   </div>
                 </div>
-                <p>{data?.description}</p>
+                <hr />
+                <h5>Price {data?.price}</h5>
+                <div className="d-flex gap-2 mt-4">
+                  <button className="fs-5 w-100 btn btn-primary rounded-pill">
+                    Buy
+                  </button>
+                  <button className="fs-5 w-100 btn btn-outline-primary rounded-pill">
+                    Add to cart
+                  </button>
+                </div>
               </div>
-            </div>
+            </article>
+            <article className="card mt-4">
+              <div className="card-body p-3">
+                <p>
+                  {data?.description} Lorem ipsum dolor sit amet consectetur
+                  adipisicing elit. Quod excepturi, iure saepe possimus cumque
+                  nostrum nulla odit totam facilis? Natus dolorem, autem porro
+                  dignissimos, voluptatum praesentium expedita alias earum
+                  reiciendis aliquid ab esse harum. Esse, blanditiis error?
+                  Aliquam sit eos ad doloremque dolorem possimus illo est
+                  accusantium delectus eligendi laborum dolorum ipsam
+                  perferendis facere dicta illum sapiente odit quaerat,
+                  doloribus facilis quas libero deleniti! Nisi quibusdam
+                  architecto sequi aspernatur aperiam. Molestias laudantium
+                </p>
+              </div>
+            </article>
           </div>
         </div>
       </div>

@@ -17,24 +17,12 @@ class BerandaController extends Controller
         ->join('categories','assets.id_category','categories.id')
         ->limit(10)
         ->whereRaw('week(transaction.created_at) = '.date('W'))
+        ->where('assets.status','active')
         ->groupBy('assets.id')
         ->orderByRaw('count(transaction.id) DESC')
         ->get();
         
-        $categoryCollectArray = [];
-
-        $categoryCollect = DB::table('assets')
-        ->select('assets.title','assets.id','assets.description','assets.price','categories.title as name_category','assets.status','username','assets.imageUrl')
-        ->selectRaw("DATE_FORMAT(assets.created_at, '%d %b %Y %H:%i') as created_at")
-        ->join('users','assets.id_seller','users.id')
-        ->join('transaction','assets.id','transaction.id_asset')
-        ->join('categories','assets.id_category','categories.id')
-        ->limit(10)
-        ->whereRaw('week(transaction.created_at) = '.date('W'))
-        ->where('assets.status','active')
-        ->groupBy('categories.id')
-        ->orderByRaw('count(transaction.id) DESC')
-        ->get();
+    
 
         $arrayCollectCategory = [];
 
@@ -42,10 +30,15 @@ class BerandaController extends Controller
         
         foreach ($category as $cat) {
             $arrayCollectCategory[] = [
+                "id"=>$cat->id,
                 "title"=>$cat->title,
                 "description"=>$cat->description,
                 "imageUrl   "=>$cat->imageUrl,
-                "items"=>DB::table('assets')->where('id_category',$cat->id)->where('assets.status','active')
+                "items"=>DB::table('assets')
+                ->join('users','assets.id_seller','users.id')
+                ->where('id_category',$cat->id)
+                ->where('assets.status','active')
+                ->limit(6)
                 ->get()
             ];
         }
@@ -68,7 +61,11 @@ class BerandaController extends Controller
             "price"=>  $detail->price,
             "created_at"=>  $detail->created_at,
             "imageUrl"=> $detail->imageUrl,
+<<<<<<< HEAD
             "status"=> "active",
+=======
+            "status"=> $detail->status,
+>>>>>>> fafe15610d4d397179c981c99869ab3f619c4b31
         "categories"=> $category = DB::table('categories')->where('id',$detail->id_category)->first()
         ];
 
@@ -80,5 +77,26 @@ class BerandaController extends Controller
 
     }
 
+    public function search()
+    {
+      $serachData =  DB::table('assets')
+        ->select('assets.title','assets.id','assets.description','assets.price','categories.title as name_category','assets.status','username','assets.imageUrl')
+        ->selectRaw("DATE_FORMAT(assets.created_at, '%d %b %Y %H:%i') as created_at")
+        ->join('users','assets.id_seller','users.id')
+        ->leftJoin('transaction','assets.id','transaction.id_asset')
+        ->join('categories','assets.id_category','categories.id')
+        ->limit(10)
+        ->where('assets.status','active')
+        ->where('assets.title','like',"%".Request()->q."%")
+        ->orWhere('assets.description','like',"%".Request()->q."%")
+        ->orWhere('categories.title','like',"%".Request()->q."%")
+        ->groupBy('assets.id')
+        ->orderByRaw('count(transaction.id) DESC')
+        ->get();
+
+
+
+        return response()->json(['status'=>200,"data"=>$serachData]);
+    }
 
 }

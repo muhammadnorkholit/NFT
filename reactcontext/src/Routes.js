@@ -16,6 +16,9 @@ import "./assets/icon/ie7/ie7.css";
 import Collection from "./views/admin/collection/Collection";
 import GuestLayout from "./views/components/GuestLayout";
 import Detail from "./views/Detail";
+import SearchPage from "./views/searchPage";
+import NotFound from "./views/NotFound";
+import Profil from "./views/Profil";
 export const Routes = createBrowserRouter([
   {
     path: "/",
@@ -30,6 +33,10 @@ export const Routes = createBrowserRouter([
         element: <Detail />,
       },
       {
+        path: "/search",
+        element: <SearchPage />,
+      },
+      {
         path: "/login",
         element: <Login />,
       },
@@ -38,7 +45,15 @@ export const Routes = createBrowserRouter([
         path: "/sign",
         element: <SignUp />,
       },
+      {
+        path: "/:username",
+        element: <Profil />,
+      },
     ],
+  },
+  {
+    path: "*",
+    element: <NotFound />,
   },
   {
     path: "/admin",

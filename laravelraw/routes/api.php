@@ -36,4 +36,5 @@ Route::resource('/collection', CollectionController::class);
 Route::resource('/member', MemberController::class);
 Route::get('/beranda',[ BerandaController::class,'index']);
 Route::get('/beranda/{id}',[ BerandaController::class,'detail']);
+Route::get('/search',[ BerandaController::class,'search']);
 // Route::resource('/member', MemberController::class);

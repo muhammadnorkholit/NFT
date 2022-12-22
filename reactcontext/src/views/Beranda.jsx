@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { env, env1 } from "../env";
-import NavbarDepan from "./components/NavbarDepan";
 
 export default function Beranda() {
   const [data, setData] = useState(undefined);
@@ -15,9 +14,8 @@ export default function Beranda() {
 
   return (
     <div>
-      <NavbarDepan />
       <main>
-        <div className=" min-vh-100">
+        <div className="mb-5">
           <div className="container">
             <div className="text-center mt-5">
               <h1 className="fw-bold text-dark mb-5">
@@ -25,13 +23,13 @@ export default function Beranda() {
               </h1>
             </div>
             <ul
-              class="nav nav-tabs border-bottom border-2"
+              className="nav nav-tabs border-bottom border-2"
               id="myTab"
               role="tablist"
             >
-              <li class="nav-item" role="presentation">
+              <li className="nav-item" role="presentation">
                 <button
-                  class="nav-link bg-transparent border-0 text-dark   active"
+                  className="nav-link bg-transparent border-0 text-dark   active"
                   id="home-tab"
                   data-bs-toggle="tab"
                   data-bs-target="#home"
@@ -43,9 +41,9 @@ export default function Beranda() {
                   <h3 className="fw-bold">Trending</h3>
                 </button>
               </li>
-              <li class="nav-item" role="presentation">
+              <li className="nav-item" role="presentation">
                 <button
-                  class="nav-link bg-transparent border-0 text-dark  "
+                  className="nav-link bg-transparent border-0 text-dark  "
                   id="profile-tab"
                   data-bs-toggle="tab"
                   data-bs-target="#profile"
@@ -58,9 +56,9 @@ export default function Beranda() {
                 </button>
               </li>
             </ul>
-            <div class="tab-content" id="myTabContent">
+            <div className="tab-content" id="myTabContent">
               <div
-                class="tab-pane fade show  active"
+                className="tab-pane fade show  active"
                 id="home"
                 role="tabpanel"
                 aria-labelledby="home-tab"
@@ -70,7 +68,12 @@ export default function Beranda() {
                   style={{ maxHeight: "80vh" }}
                 >
                   {data?.trending?.map((trend, i) => (
-                    <div key={i} className="col-lg-6  border-bottom mb-2  ">
+                    <div
+                      key={i}
+                      className={`${
+                        i > 5 ? "col-lg-6" : "col"
+                      }  border-bottom mb-2  `}
+                    >
                       <Link
                         to={"/detail/" + trend.id}
                         className="text-dark text-decoration-none "
@@ -103,7 +106,7 @@ export default function Beranda() {
                 </div>
               </div>
               <div
-                class="tab-pane fade"
+                className="tab-pane fade"
                 id="profile"
                 role="tabpanel"
                 aria-labelledby="profile-tab"
@@ -114,9 +117,16 @@ export default function Beranda() {
         <section>
           <div className="container">
             {data?.categoryCollect?.map((cat) => (
-              <div className="row  flex-column collection-category">
-                <h3 className="text-dark fw-semibold text-capitalize">
+              <div className="row  flex-column collection-category align-items-start">
+                <h3 className="text-dark fw-semibold text-capitalize ">
                   {cat.title}
+                  <hr
+                    style={{
+                      width: "10%",
+                      borderWidth: "3px",
+                      borderColor: "black",
+                    }}
+                  />
                 </h3>
                 <div className="row overflow-hide  flex-nowrap py-lg-4 py-2 overflow-auto">
                   {cat.items.map((item) => (
@@ -134,6 +144,10 @@ export default function Beranda() {
                         <div className="card-body">
                           <h5 className="text-dark fs-5">{item.title}</h5>
                           <span className="text-dark">20 ETH</span>
+                          <div className="d-flex  justify-content-between">
+                            <small>Created by</small>
+                            <small>{item.username}</small>
+                          </div>
                         </div>
                       </div>
                     </div>

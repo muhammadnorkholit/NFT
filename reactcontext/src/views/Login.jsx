@@ -35,7 +35,8 @@ export default function Login() {
         if (res?.status === 200) {
           setUser(res.user);
           setError(undefined);
-          if (res.user.role == "admin") navi("/admin");
+          if (res.user.role == "admin")
+            navi("/admin", { state: { isLogin: true } });
           if (res.user.role == "member") navi("/");
         }
         if (res?.status === 401) {
