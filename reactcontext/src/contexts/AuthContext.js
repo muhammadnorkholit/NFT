@@ -17,11 +17,16 @@ const ContextComponent = ({ children }) => {
     }
   }
   function setUser(user) {
+    
+    setUser(user)
     localStorage.setItem(
       "USER_DATA",
       JSON.stringify({ ...user, exp: date.getTime() + 24 * 60 * 60 * 1000 })
     );
+    isLogin = true   
+    
   }
+  
   return (
     <Context.Provider value={{ user, setUser, isLogin }}>
       {children}

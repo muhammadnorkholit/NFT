@@ -37,7 +37,7 @@ CREATE TABLE `assets` (
   `id_seller` int NOT NULL,
   `imageUrl` varchar(255) NOT NULL,
   `status` enum('active','noactive','block') NOT NULL DEFAULT 'noactive'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB ;
 
 --
 -- Dumping data for table `assets`
@@ -59,7 +59,7 @@ CREATE TABLE `categories` (
   `title` varchar(30) NOT NULL,
   `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `imageUrl` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB ;
 
 --
 -- Dumping data for table `categories`
@@ -100,7 +100,7 @@ CREATE TABLE `transaction` (
   `id_buyer` int NOT NULL,
   `id_asset` int NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB ;
 
 --
 -- Dumping data for table `transaction`
@@ -126,7 +126,7 @@ CREATE TABLE `users` (
   `role` enum('member','admin') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'member',
   `status` enum('active','noactive','block') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'active',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB ;
 
 --
 -- Dumping data for table `users`

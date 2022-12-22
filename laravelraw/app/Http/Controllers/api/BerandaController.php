@@ -67,7 +67,7 @@ class BerandaController extends Controller
             "description"=>  $detail->description,
             "price"=>  $detail->price,
             "created_at"=>  $detail->created_at,
-            "imageUrl"=> "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPkPxu2hJf59E7PUI4SlOXZHmtJkTqO-utb1yXEGVcPagg3ztgfSXg3GJV8sgxfSW9rUwiYw&s",
+            "imageUrl"=> $detail->imageUrl,
             "status"=> "active",
         "categories"=> $category = DB::table('categories')->where('id',$detail->id_category)->first()
         ];

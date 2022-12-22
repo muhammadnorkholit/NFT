@@ -8,6 +8,7 @@ export default function DashboardLayout() {
   if (!isLogin) {
     return <Navigate to={"/login"} />;
   }
+
   return (
     <div className="container-fluid  ">
       <div className="row py-4 px-2 min-vh-100">

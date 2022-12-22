@@ -21,7 +21,7 @@ export default function Detail() {
         <div className="row g-5 justify-content-between py-5">
           <div className="col-md-6">
             <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPkPxu2hJf59E7PUI4SlOXZHmtJkTqO-utb1yXEGVcPagg3ztgfSXg3GJV8sgxfSW9rUwiYw&s"
+              src={data?.imageUrl}
               className="detail-img"
               alt=""
             />

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ContextUse } from "./../contexts/AuthContext";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, Navigate } from "react-router-dom";
 import { env } from "../env";
 
 export default function Login() {
@@ -8,6 +8,11 @@ export default function Login() {
   const [error, setError] = useState(undefined);
   const [message, setMessage] = useState(undefined);
   const [field, setField] = useState(undefined);
+  const {isLogin} = ContextUse()
+
+  if (isLogin) {
+    return <Navigate to={"/admin"} />;
+  }
 
   const { setUser } = ContextUse();
   function onField(e) {
@@ -59,7 +64,7 @@ export default function Login() {
               className="form-control rounded-pill "
               name="username"
               onChange={onField}
-              id=""
+             
             />
             {error?.username && (
               <small className="text-danger">{error?.username}</small>
@@ -72,7 +77,7 @@ export default function Login() {
               className="form-control rounded-pill"
               name="password"
               onChange={onField}
-              id=""
+             
             />
             {error?.password && (
               <small className="text-danger">{error?.password}</small>
