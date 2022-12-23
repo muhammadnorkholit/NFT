@@ -134,22 +134,26 @@ export default function Member() {
                             <span className="ti-pencil-alt"></span> Edit Status
                           </li>
                           <li
+
+                          
                             style={{ cursor: "Pointer" }}
-                            className="dropdown-item p-3"
+                            className={`dropdown-item p-3 ${data.status == "active" && 'd-none' }`}
                             onClick={() => updateStatus(data, "active")}
                           >
                             <span>Active</span>
                           </li>
                           <li
+                          
                             style={{ cursor: "Pointer" }}
-                            className="dropdown-item p-3"
+                            className={`dropdown-item p-3 ${data.status == "noactive" && 'd-none' }`}
                             onClick={() => updateStatus(data, "noactive")}
                           >
                             <span>No Active</span>
                           </li>
                           <li
+                          
                             style={{ cursor: "Pointer" }}
-                            className="dropdown-item p-3"
+                            className={`dropdown-item p-3 ${data.status == "block" && 'd-none' }`}
                             onClick={() => updateStatus(data, "block")}
                           >
                             <span>Block</span>

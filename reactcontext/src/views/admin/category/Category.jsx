@@ -62,9 +62,9 @@ export default function Category() {
                     </td>
                     <td>
                       <div className="d-flex gap-1">
-                        <button className="btn btn-warning btn-action d-flex align-items-center justify-content-center me-2">
+                        <Link to={"/admin/category/"+data.id} className="btn btn-warning btn-action d-flex align-items-center justify-content-center me-2">
                           <span className="ti-pencil-alt"></span>
-                        </button>
+                        </Link>
                         <button className="btn btn-success btn-action d-flex align-items-center justify-content-center me-2">
                           <span className="ti-info-alt"></span>
                         </button>

@@ -48,7 +48,7 @@ export default function Dashboard() {
             <div className="card-body d-flex align-items-center justify-content-between">
               <div className="d-flex gy-4 flex-column">
                 <span className="bg-primary p-4 rounded-2 text-white">
-                  {data?.member}
+                  {data?.categories}
                 </span>
                 <div className="card-title text-white">Category</div>
               </div>

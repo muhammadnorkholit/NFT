@@ -116,17 +116,20 @@ export default function Beranda() {
         </div>
         <section>
           <div className="container">
-            {data?.categoryCollect?.map((cat,i) => (
+            { data?.categoryCollect?.map((cat,i) => (
+              
               <div key={i} className="row  flex-column collection-category align-items-start">
                 <h3 className="text-dark fw-semibold text-capitalize ">
-                  {cat.title}
-                  <hr
+                  {console.log(cat.items.length)}
+                {cat.items.length != 0 && cat.title}
+                {cat.items.length != 0 &&    <hr
                     style={{
                       width: "10%",
                       borderWidth: "3px",
                       borderColor: "black",
                     }}
-                  />
+                  />}
+               
                 </h3>
                 <div className="row overflow-hide  flex-nowrap py-lg-4 py-2 overflow-auto">
                   {cat.items.map((item,i) => (

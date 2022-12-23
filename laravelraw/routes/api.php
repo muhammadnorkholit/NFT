@@ -32,10 +32,13 @@ Route::get("/logout",[AuthController::class,"logout"]);
 
 Route::resource('/dashboard', DashboardController::class);
 Route::resource('/category', CategoryController::class);
+Route::post('/category/s/{id}', [CategoryController::class,"update"]);
 Route::resource('/collection', CollectionController::class);
 Route::resource('/member', MemberController::class);
 Route::get('/beranda',[ BerandaController::class,'index']);
 Route::get('/beranda/{id}',[ BerandaController::class,'detail']);
+Route::get('/categories/{category}',[ BerandaController::class,'category']);
+Route::get('/categories',[ BerandaController::class,'allCategory']);
 Route::get('/search',[ BerandaController::class,'search']);
 Route::post('/forget',[ AuthController::class,'forgetPassword']);
 // Route::resource('/member', MemberController::class);

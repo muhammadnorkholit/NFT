@@ -34,7 +34,7 @@ class BerandaController extends Controller
                 "description"=>$cat->description,
                 "imageUrl   "=>$cat->imageUrl,
                 "items"=>DB::table('assets')
-                ->select("assets.*")
+                ->select("assets.*","username")
                 ->join('users','assets.id_seller','users.id')
                 ->where('id_category',$cat->id)
                 ->where('assets.status','active')
@@ -47,6 +47,36 @@ class BerandaController extends Controller
         return response()->json(['status'=>200,'trending'=>$trending,'categoryCollect'=>$arrayCollectCategory]);
     }
 
+    public function allCategory()
+    {
+        $categories = DB::table("categories")->get();
+        return response()->json(['status'=>200,'data'=>$categories]);
+        
+    }
+    public function category($category)
+    {
+        $arrayCollectCategory = [];
+
+        $cat = DB::table('categories')->where("title",$category)->first();
+        
+           if ($cat) {
+            $arrayCollectCategory[] = [
+                "id"=>$cat->id,
+                "title"=>$cat->title,
+                "description"=>$cat->description,
+                "imageUrl"=>  $cat->imageUrl,
+                "items"=>DB::table('assets')
+                ->select("assets.*","username")
+                ->join('users','assets.id_seller','users.id')
+                ->where('id_category',$cat->id)
+                ->where('assets.status','active')
+                ->paginate(20)
+            ];
+           }
+
+        return response()->json(['status'=>200,'categoryData'=>$arrayCollectCategory]);
+
+    }
 
     public function detail()
     {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { env } from '../env';
 
 export default function ForgetPassword() {
@@ -27,6 +27,7 @@ export default function ForgetPassword() {
             {console.log(res);
                 if (res.status ==200) {
                     setValid(true)
+                    setField(undefined)
                 }
                 if (res.status ==401) {
                     setValid(false)
@@ -47,7 +48,7 @@ export default function ForgetPassword() {
             {
                 console.log(res);
                 if (res.status ==200) {
-                    setValid(true)
+                    return <Navigate to={"/login"}/>
                 }
                 if (res.status ==401) {
                     setValid(false)
@@ -76,10 +77,11 @@ export default function ForgetPassword() {
                 onChange={onField}
                 placeholder="Password baru"
                 required={true}
-               
+                value={field?.newPassword ? field?.newPassword :""}
               />
-              {error?.email && (
-                <small className="text-danger">{error?.email}</small>
+              {console.log(field)}
+              {error?.newPassword && (
+                <small className="text-danger">{error?.newPassword}</small>
               )}
             </div>
          
@@ -110,6 +112,9 @@ export default function ForgetPassword() {
             onChange={onField}
             placeholder="Email addres"
             required={true}
+            value={field?.email}
+
+
            
           />
           {error?.email && (

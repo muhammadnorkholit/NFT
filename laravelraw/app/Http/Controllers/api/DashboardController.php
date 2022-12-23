@@ -15,14 +15,14 @@ class DashboardController extends Controller
     public function index()
     {
         $member = DB::table('users')->where('role','member')->count();
+        $category = DB::table('categories')->count();
         $assets = DB::table('assets')
         ->select('assets.*')
         ->join('users','assets.id_seller','users.id')
         ->where('users.status','active')
-        ->groupBy('assets.id')
         ->count();
 
-        return response()->json(["status"=>200,"member"=>$member,"assets"=>$assets,]);
+        return response()->json(["status"=>200,"member"=>$member,"assets"=>$assets,"categories"=>$category]);
 
     }
 

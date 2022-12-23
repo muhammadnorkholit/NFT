@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import DashboardLayout from "./views/components/DashboardLayout";
 import Dashboard from "./views/admin/Dashboard";
 import "./assets/bootstrap/css/bootstrap.css";
-// import "./assets/bootstrap/js/bootstrap.js";
+import 'bootstrap/dist/js/bootstrap.js';
 import "./index.css";
 import Login from "./views/Login";
 import SignUp from "./views/SignUp";
@@ -19,7 +19,9 @@ import Detail from "./views/Detail";
 import SearchPage from "./views/searchPage";
 import NotFound from "./views/NotFound";
 import Profil from "./views/Profil";
+import CategoryPage from "./views/CategoryPage";
 import ForgetPassword from "./views/ForgetPassword";
+import EditCategory from "./views/admin/category/EditCategory copy";
 export const Routes = createBrowserRouter([
   {
     path: "/",
@@ -32,6 +34,10 @@ export const Routes = createBrowserRouter([
       {
         path: "/detail/:id",
         element: <Detail />,
+      },
+      {
+        path: "/categories/:category",
+        element: <CategoryPage />,
       },
       {
         path: "/search",
@@ -76,6 +82,10 @@ export const Routes = createBrowserRouter([
       {
         path: "/admin/category/create",
         element: <CreateCategory />,
+      },
+      {
+        path: "/admin/category/:id",
+        element: <EditCategory />,
       },
       {
         path: "/admin/member",

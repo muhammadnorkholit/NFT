@@ -83,7 +83,7 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $data = DB::table('categories')->where('id',$id)->first();
-        return response()->json(['status'=>200,compact('data')]);
+        return response()->json(['status'=>200,"data"=>$data]);
 
     }
 
@@ -102,15 +102,22 @@ class CategoryController extends Controller
         ]);
 
         if (Request()->has('image')) {
-            Request()->validate([
-                'image'=>'mime:png,jpg,jpeg'
+            $image = Request()->file("image");
+            $name = time().$image->getClientOriginalName();
+            $image->move(public_path("/image"),$name);
+
+            DB::table('categories')->where('id',$id)->update([
+                'title'=>Request()->title,
+                'description'=>Request()->description,
+                'imageUrl'=>$name,
             ]);
+        return response()->json(['status'=>200,'pesan'=>'Berhasil Mengedit Kategori']);
+
         }
 
         DB::table('categories')->where('id',$id)->update([
             'title'=>Request()->title,
             'description'=>Request()->description,
-            'imageUrl'=>Request()->image,
         ]);
 
         return response()->json(['status'=>200,'pesan'=>'Berhasil Mengedit Kategori']);

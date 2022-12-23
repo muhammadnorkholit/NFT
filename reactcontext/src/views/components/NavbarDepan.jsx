@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ContextUse } from "../../contexts/AuthContext";
+import { env } from "../../env";
 export default function NavbarDepan() {
   const navi = useNavigate();
   const [search, setSearch] = useState("");
+  const [data, setData] = useState(undefined);
   const { user } = ContextUse();
   function doSearch(e) {
     e.preventDefault();
@@ -16,6 +18,13 @@ export default function NavbarDepan() {
       window.location.href = '/';
     }
   }
+  useEffect(()=>{
+    fetch(env+"/categories").then(json=>json.json()).then(res=>setData(res.data));
+  },[])
+
+
+
+
   return (
     <nav className="navbar  navbar-expand-lg  navbar-light shadow-sm   bg-white py-3">
       <div className="container">
@@ -41,39 +50,26 @@ export default function NavbarDepan() {
               </Link>
             </li>
 
-            <li className="nav-item dropdown">
-              <a
-                className="nav-link active dropdown-toggle"
-                href="#"
-                id="navbarDropdown"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
+            <li className="nav-item ">
+              <Link
+                className="nav-link active "
               >
-                Categories
-              </a>
-              <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li>
-                  <a className="dropdown-item" href="#">
-                    Action
-                  </a>
-                </li>
-                <li>
-                  <a className="dropdown-item" href="#">
-                    Another action
-                  </a>
-                </li>
-                <li>
-                  <hr className="dropdown-divider" />
-                </li>
-                <li>
-                  <a className="dropdown-item" href="#">
-                    Something else here
-                  </a>
-                </li>
-              </ul>
+              </Link>
+            
             </li>
-            <li className="nav-item"></li>
+         {data?.map((d,i)=>  {
+          if (i < 5) {
+            return <li key={i} className="nav-item ">
+            <Link
+            to={`/categories/`+d.title}
+              className=" text-capitalize nav-link active "
+            >
+              {d.title}
+            </Link>
+          
+          </li>
+          }
+         })}
           </ul>
           <form onSubmit={doSearch} className="ms-auto">
             <input
@@ -94,7 +90,7 @@ export default function NavbarDepan() {
                 aria-current="page"
                 to=""
               >
-                <img src={user.imageUrl} className=" rounded-circle " alt="" />
+                <img src={`${user.imageUrl}`} className=" rounded-circle " alt="" />
               </Link>
               <button onClick={logout} className="btn btn-primary ">
               Logout

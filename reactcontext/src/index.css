@@ -119,13 +119,27 @@ ul {
   height: 80px;
   border-radius: 10px;
 }
-
+.category-item{
+  height: 300px;
+}
+.category-item-img{
+  height: 200px;
+  object-fit: cover;
+}
+textarea{
+  min-height: 200px !important;
+  resize: none;
+}
 .detail-img {
   width: 100%;
   max-height: 50vh;
   object-fit: contain;
 }
-
+.category-banner{
+  max-height: 50vh;
+  object-fit: cover;
+  object-position: center ;
+}
 .collection-item:hover {
   background-color: rgba(236, 236, 236, 0.5);
 }
