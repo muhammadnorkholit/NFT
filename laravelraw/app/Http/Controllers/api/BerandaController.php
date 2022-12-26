@@ -93,7 +93,8 @@ class BerandaController extends Controller
             "imageUrl"=> $detail->imageUrl,
             "status"=> "active",
             "status"=> $detail->status,
-        "categories"=> $category = DB::table('categories')->where('id',$detail->id_category)->first()
+            "categories"=> DB::table('categories')->where('id',$detail->id_category)->first(),
+            "seller"=>  DB::table('users')->select('username','id')->where('id',$detail->id_seller)->first()
         ];
 
 

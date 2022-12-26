@@ -27,6 +27,7 @@ export default function Login() {
 
   function onSubmit(e) {
     e.preventDefault();
+
     fetch(env + "/login", {
       method: "POST",
       headers: {
@@ -37,6 +38,7 @@ export default function Login() {
     })
       .then((json) => json.json())
       .then((res) => {
+        console.log(res);
         if (res?.status == 200) {
           setUser(res.user)
           setError(undefined);
@@ -54,7 +56,8 @@ export default function Login() {
       });
   }
   return (
-    <div className="card border-0 auth login m-auto ">
+    <div className="auth">
+      <div className="card border-0  login m-auto ">
       <div className="card-header text-center">
         <h2>Login</h2>
       </div>
@@ -67,7 +70,7 @@ export default function Login() {
             <label htmlFor="">Username</label>
             <input
               type="text"
-              className="form-control rounded-pill "
+              className="form-control  "
               name="username"
               onChange={onField}
              
@@ -80,7 +83,7 @@ export default function Login() {
             <label htmlFor="">Password</label>
             <input
               type="password"
-              className="form-control rounded-pill"
+              className="form-control "
               name="password"
               onChange={onField}
              
@@ -89,12 +92,11 @@ export default function Login() {
               <small className="text-danger">{error?.password}</small>
             )}
           </div>
-          <button type="submit" className="btn btn-primary w-100 rounded-pill">
+          <button type="submit" className="btn btn-primary w-100 ">
             Login
           </button>
-        <div className="d-flex justify-content-between">
-        <small className="text-center  pt-3  ">
-          
+        <div className="d-flex flex-wrap justify-content-between">
+        <small className="text-center   pt-3  ">
             <Link to={"/forget"} className="link-primary text-decoration-none">
             Forget Password
             </Link>
@@ -108,6 +110,7 @@ export default function Login() {
         </div>
         </form>
       </div>
+    </div>
     </div>
   );
 }

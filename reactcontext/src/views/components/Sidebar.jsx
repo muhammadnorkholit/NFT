@@ -25,11 +25,6 @@ export default function Sidebar() {
           </Link>
         </li>
         <li className="nav-item">
-          <Link to="/admin/category" className="nav-link py-3  text-white ">
-            <span className="ti-layout-list-thumb"></span> Category
-          </Link>
-        </li>
-        <li className="nav-item">
           <Link to="/admin/member" className="nav-link py-3  text-white ">
             <span className="ti-user"></span> Member
           </Link>
@@ -40,9 +35,20 @@ export default function Sidebar() {
           </Link>
         </li>
         <li className="nav-item">
-          <span onClick={logout} className="nav-link py-3  text-white ">
+          <Link to="/admin/transactions" className="nav-link py-3  text-white ">
+            <span className="ti-view-grid"></span> Transaction
+          </Link>
+        </li>
+      
+        <li className="nav-item">
+          <Link to="/admin/category" className="nav-link py-3  text-white ">
+            <span className="ti-layout-list-thumb"></span> Category
+          </Link>
+        </li>
+        <li className="nav-item" onClick={logout} >
+          <Link className="nav-link py-3  text-white ">
             <span className="ti-close"></span> Logout
-          </span>
+          </Link>
         </li>
       </ul>
     </div>

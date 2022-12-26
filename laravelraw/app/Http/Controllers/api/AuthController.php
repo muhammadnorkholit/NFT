@@ -16,14 +16,22 @@ class AuthController extends Controller
         'username'=>'required',
         'password'=>'required'
        ]);
+     
        $user = DB::table("users")->where("username",Request()->username)->first();
        if ($user) {
+      
         try {
+       
          if (Request()->password . "merdeka" === decrypt($user->password)) {
             return response()->json([
                'status'=>200,
                'pesan'=>"Berhasil Login",
                'user'=>$user
+              ]);
+         }else{
+            return response()->json([
+               'status'=>401,
+               'pesan'=>"Username atau password salah",
               ]);
          }
         } catch (\Throwable $th) {

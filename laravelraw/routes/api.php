@@ -8,6 +8,8 @@ use App\Http\Controllers\api\CategoryController;
 use App\Http\Controllers\api\CollectionController;
 use App\Http\Controllers\api\MemberController;
 use App\Http\Controllers\api\BerandaController;
+use App\Http\Controllers\api\profilController;
+use App\Http\Controllers\api\transactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,10 +37,13 @@ Route::resource('/category', CategoryController::class);
 Route::post('/category/s/{id}', [CategoryController::class,"update"]);
 Route::resource('/collection', CollectionController::class);
 Route::resource('/member', MemberController::class);
+Route::resource('/transaction', transactionController::class);
 Route::get('/beranda',[ BerandaController::class,'index']);
 Route::get('/beranda/{id}',[ BerandaController::class,'detail']);
 Route::get('/categories/{category}',[ BerandaController::class,'category']);
 Route::get('/categories',[ BerandaController::class,'allCategory']);
 Route::get('/search',[ BerandaController::class,'search']);
 Route::post('/forget',[ AuthController::class,'forgetPassword']);
+
+Route::get('/profil/{username}',[ profilController::class,'index']);
 // Route::resource('/member', MemberController::class);

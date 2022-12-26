@@ -42,7 +42,8 @@ export default function SignUp() {
       });
   }
   return (
-    <div className="card border-0 auth sign m-auto ">
+    <div className="auth">
+      <div className="card border-0  sign m-auto ">
       <div className="card-header text-center">
         <h2>Sign</h2>
       </div>
@@ -55,7 +56,7 @@ export default function SignUp() {
             <label htmlFor="">Username</label>
             <input
               type="text"
-              className="form-control rounded-pill "
+              className="form-control  "
               name="username"
               placeholder="Username"
               onChange={onField}
@@ -69,7 +70,7 @@ export default function SignUp() {
             <label htmlFor="">Email</label>
             <input
               type="email"
-              className="form-control rounded-pill"
+              className="form-control "
               name="email"
               placeholder="Email addres"
               onChange={onField}
@@ -83,7 +84,7 @@ export default function SignUp() {
             <label htmlFor="">Password</label>
             <input
               type="password"
-              className="form-control rounded-pill"
+              className="form-control "
               name="password"
               placeholder="Password"
               onChange={onField}
@@ -93,7 +94,7 @@ export default function SignUp() {
               <small className="text-danger">{error?.password}</small>
             )}
           </div>
-          <button type="submit" className="btn btn-primary w-100 rounded-pill">
+          <button type="submit" className="btn btn-primary w-100 ">
             Sign
           </button>
           <small className="text-center d-block pt-3  ">
@@ -104,6 +105,7 @@ export default function SignUp() {
           </small>
         </form>
       </div>
+    </div>
     </div>
   );
 }
